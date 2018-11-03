@@ -6,6 +6,7 @@ import { ModalManagerModule } from '@browninglogic/ng-modal';
 import { ErrorWindowComponent } from './components/error-window/error-window.component';
 import { AuthenticationService } from './services/authentication.service';
 import { ErrorHandlingService } from './services/error-handling.service';
+import { MatToolbarModule, MatIconModule, MatCardModule } from '@angular/material';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -28,7 +29,10 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NgLoadingIndicatorModule,
-        ModalManagerModule
+        ModalManagerModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatCardModule
       ],
       declarations: [
         AppComponent,
@@ -63,7 +67,7 @@ describe('AppComponent', () => {
   });
 
   it('should render title in a h1 tag', () => {
-    expect(fixture.debugElement.nativeElement.querySelector('h1').textContent).toContain('Welcome to OIDC Test Client!');
+    expect(fixture.debugElement.nativeElement.querySelector('h1').textContent).toContain('OIDC Test Client');
   });
 
   it('should properly perform an explicit silent refresh', (done: DoneFn) => {

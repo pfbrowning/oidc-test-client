@@ -1,18 +1,26 @@
-<div class="flex-grid">
+<div class="flex-grid token-info-grid">
   <div class="flex-column flex-column-half">
-    <h3>Identity Token Claims</h3>
-    <pre class="identityTokenClaims">{{identityTokenClaims | json}}</pre>
+    <mat-card>
+      <mat-card-title>Identity Token Claims</mat-card-title>
+      <mat-card-content><pre class="identityTokenClaims">{{identityTokenClaims | json}}</pre></mat-card-content>
+    </mat-card>    
   </div>
   <div class="flex-column flex-column-half">
-    <h3>Access Token Claims</h3>
-    <pre class="accessTokenClaims">{{accessTokenClaims | json}}</pre>
+    <mat-card>
+      <mat-card-title>Access Token Claims</mat-card-title>
+      <mat-card-content><pre class="accessTokenClaims">{{accessTokenClaims | json}}</pre></mat-card-content>
+    </mat-card>
   </div>
   <div class="flex-column flex-column-half">
-    <h3>Identity Token Expiration</h3>
-    <pre class="idTokenExpirationInfo">{{identityTokenExpirationInfo | json}}</pre>
+    <mat-card>
+      <mat-card-title>Identity Token Expiration</mat-card-title>
+      <mat-card-content><pre class="idTokenExpirationInfo">{{identityTokenExpirationInfo | json}}</pre></mat-card-content>
+    </mat-card>
   </div>
   <div class="flex-column flex-column-half">
-    <h3>Access Token Expiration</h3>
-    <pre class="accessTokenExpirationInfo">{{accessTokenExpirationInfo | json}}</pre>
+    <mat-card>
+      <mat-card-title>Access Token Expiration</mat-card-title>
+      <mat-card-content><pre class="accessTokenExpirationInfo">{{accessTokenExpirationInfo | json}}</pre></mat-card-content>
+    </mat-card>
   </div>
 </div>

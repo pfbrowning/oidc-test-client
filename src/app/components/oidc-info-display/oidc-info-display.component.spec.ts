@@ -8,6 +8,7 @@ import * as moment from 'moment';
 import { Subscription, interval } from 'rxjs';
 import { TestHelpers } from 'src/test-helpers';
 import { Utils } from 'src/app/utils/utils';
+import { MatCardModule } from '@angular/material';
 
 describe('OidcInfoDisplayComponent', () => {
   let component: OidcInfoDisplayComponent;
@@ -19,6 +20,9 @@ describe('OidcInfoDisplayComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        MatCardModule
+      ],
       declarations: [ OidcInfoDisplayComponent ],
       providers: [
         { provide: AuthenticationService, useClass: AuthenticationServiceStub }

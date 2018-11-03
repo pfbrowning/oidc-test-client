@@ -4,7 +4,9 @@
     <ng-container *ngIf="appError">
       <p class="errorComment">{{appError.comment}}</p>
       <p class="errorMessage">{{appError.error.message}}</p>
-      <input type="button" value="Restart" (click)="restartApplication()" class="actionButton" />
+      <button type="button" mat-raised-button color="primary" (click)="restartApplication()">
+          <mat-icon>refresh</mat-icon> Restart
+      </button>
     </ng-container>
   </div>
 </nm-modal-window>

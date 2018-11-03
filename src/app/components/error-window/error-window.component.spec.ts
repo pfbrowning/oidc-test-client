@@ -4,6 +4,7 @@ import { ModalManagerModule, ModalWindowComponent } from '@browninglogic/ng-moda
 import { ErrorHandlingService } from '../../services/error-handling.service';
 import { By } from '@angular/platform-browser';
 import { TestHelpers } from 'src/test-helpers';
+import { MatIconModule } from '@angular/material';
 
 describe('ErrorWindowComponent', () => {
   let component: ErrorWindowComponent;
@@ -13,7 +14,10 @@ describe('ErrorWindowComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ ModalManagerModule ],
+      imports: [
+        ModalManagerModule,
+        MatIconModule
+      ],
       declarations: [ ErrorWindowComponent ],
       providers: [ ErrorHandlingService ]
     })

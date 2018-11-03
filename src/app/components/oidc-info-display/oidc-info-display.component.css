@@ -1,6 +1,12 @@
-/* break word within pre tags so that super long claim names break to the next 
-line, rather than bleeding over into the next column. */
-pre{
-    white-space: pre-wrap;
-    word-wrap: break-word;
+.token-info-grid {
+    max-width:1000px;
+    margin:0px auto;
+}
+
+.token-info-grid mat-card {
+    margin:10px;
+}
+
+.token-info-grid pre{
+    overflow: auto;
 }
