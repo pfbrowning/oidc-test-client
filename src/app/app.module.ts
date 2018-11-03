@@ -9,6 +9,7 @@ import { ModalManagerModule } from '@browninglogic/ng-modal';
 import { ErrorWindowComponent } from './components/error-window/error-window.component';
 import { UnhandledErrorCatcher } from './services/unhandled-error-catcher.service';
 import { OidcInfoDisplayComponent } from './components/oidc-info-display/oidc-info-display.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { OidcInfoDisplayComponent } from './components/oidc-info-display/oidc-in
     HttpClientModule,
     ModalManagerModule,
     NgLoadingIndicatorModule,
-    OAuthModule.forRoot()
+    OAuthModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: ErrorHandler, useClass: UnhandledErrorCatcher }
