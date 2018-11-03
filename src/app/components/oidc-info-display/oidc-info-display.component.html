@@ -1,0 +1,18 @@
+<div class="flex-grid">
+  <div class="flex-column flex-column-half">
+    <h3>Identity Token Claims</h3>
+    <pre class="identityTokenClaims">{{identityTokenClaims | json}}</pre>
+  </div>
+  <div class="flex-column flex-column-half">
+    <h3>Access Token Claims</h3>
+    <pre class="accessTokenClaims">{{accessTokenClaims | json}}</pre>
+  </div>
+  <div class="flex-column flex-column-half">
+    <h3>Identity Token Expiration</h3>
+    <pre class="idTokenExpirationInfo">{{identityTokenExpirationInfo | json}}</pre>
+  </div>
+  <div class="flex-column flex-column-half">
+    <h3>Access Token Expiration</h3>
+    <pre class="accessTokenExpirationInfo">{{accessTokenExpirationInfo | json}}</pre>
+  </div>
+</div>

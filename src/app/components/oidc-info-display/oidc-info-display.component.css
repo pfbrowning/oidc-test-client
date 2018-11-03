@@ -1,0 +1,6 @@
+/* break word within pre tags so that super long claim names break to the next 
+line, rather than bleeding over into the next column. */
+pre{
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}

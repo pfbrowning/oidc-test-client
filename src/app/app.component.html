@@ -1,0 +1,30 @@
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+</div>
+
+<ng-container *ngIf="userAuthenticated; then authenticated else notAuthenticated"></ng-container>
+<ng-template #notAuthenticated>
+  <!-- If the user is not authenticated, then give them a login button and basic login instructions -->
+  <div class="headerSection">
+    <h2>You are not authenticated</h2>
+    <p>Log in by using the external login or by using Alice / password or Bob / password for the internal login.</p>
+    <ul class="actionButtonList">
+      <li><input type="button" value="Log In" (click)="logIn()" /></li>
+    </ul>
+  </div>
+</ng-template>
+<ng-template #authenticated>
+  <div class="headerSection">
+    <h2>You're authenticated!</h2>
+    <ul class="actionButtonList">
+      <li><input type="button" value="Log Out" (click)="logOut()" /></li>
+      <li><input type="button" value="Silent Refresh" (click)="silentRefresh()" /></li>
+    </ul>
+  </div>
+  <oidc-info-display></oidc-info-display>
+</ng-template>
+
+<nli-loading-indicator></nli-loading-indicator>
+<error-window></error-window>
