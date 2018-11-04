@@ -20,14 +20,17 @@ export class AuthenticationService {
     ID token if present.  Afterwards set _tokenProcessed to true so that anybody listening
     to tokenProcessed knows that the token has been processed.*/
     this.oauthService.loadDiscoveryDocumentAndTryLogin()
-      .then(() => this._tokenProcessed.next())
+      .then(() => {
+        this._tokenProcessed.next();
+        this.oauthService.setupAutomaticSilentRefresh();
+      })
       .catch(error => this.errorHandlingService.handleError(error,
         'Failed to load discovery document: Is your OIDC provider configured and running?'));
 
-    // Configure automatic silent refresh
-    this.oauthService.setupAutomaticSilentRefresh();
-
-    this.oauthService.events.subscribe(event => this._oAuthEvents.next(event));
+    this.oauthService.events.subscribe(event => {
+      this._oAuthEvents.next(event);
+      console.log('oauth event', event);
+    });
   }
 
   /** Emits once the discovery document has been loaded and the id token has been
