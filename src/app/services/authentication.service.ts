@@ -11,6 +11,7 @@ import * as moment from 'moment';
 @Injectable({providedIn: 'root'})
 export class AuthenticationService {
   private readonly _tokenProcessed = new ReplaySubject<void>(1);
+  private readonly _oAuthEvents = new ReplaySubject<OAuthEvent>(10);
 
   constructor(private oauthService: OAuthService, private errorHandlingService: ErrorHandlingService) {
     // Initialize the oauth service with our auth config settings
@@ -25,6 +26,8 @@ export class AuthenticationService {
 
     // Configure automatic silent refresh
     this.oauthService.setupAutomaticSilentRefresh();
+
+    this.oauthService.events.subscribe(event => this._oAuthEvents.next(event));
   }
 
   /** Emits once the discovery document has been loaded and the id token has been
@@ -32,6 +35,10 @@ export class AuthenticationService {
    * already occurred. */
   public tokenProcessed(): Observable<void> {
     return this._tokenProcessed;
+  }
+  
+  public get oAuthEvents(): Observable<OAuthEvent> {
+    return this._oAuthEvents;
   }
 
   /** Redirects the user to the oidc provider login page for implicit flow */

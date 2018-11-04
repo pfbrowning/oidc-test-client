@@ -10,13 +10,17 @@ import { ErrorWindowComponent } from './components/error-window/error-window.com
 import { UnhandledErrorCatcher } from './services/unhandled-error-catcher.service';
 import { OidcInfoDisplayComponent } from './components/oidc-info-display/oidc-info-display.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToasterComponent } from './components/toaster/toaster.component';
 import { MatToolbarModule, MatIconModule, MatButtonModule, MatCardModule } from '@angular/material';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
     AppComponent,
     ErrorWindowComponent,
-    OidcInfoDisplayComponent
+    OidcInfoDisplayComponent,
+    ToasterComponent
   ],
   imports: [
     BrowserModule,
@@ -28,10 +32,12 @@ import { MatToolbarModule, MatIconModule, MatButtonModule, MatCardModule } from 
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    ToastModule
   ],
   providers: [
-    { provide: ErrorHandler, useClass: UnhandledErrorCatcher }
+    { provide: ErrorHandler, useClass: UnhandledErrorCatcher },
+    MessageService
   ],
   bootstrap: [AppComponent]
 })
