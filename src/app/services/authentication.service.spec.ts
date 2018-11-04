@@ -51,11 +51,13 @@ describe('AuthenticationService', () => {
     in the expected fashion */
     expect(configureSpy).toHaveBeenCalledTimes(1);
     expect(loadDiscoAndTrySpy).toHaveBeenCalledTimes(1);
-    expect(setupSilentRefreshSpy).toHaveBeenCalledTimes(1);
     expect(errorHandlingServiceSpy.handleError).not.toHaveBeenCalled();
 
     // Expect that the tokenProcessed observable emits before completing the test
-    authenticationService.tokenProcessed().subscribe(() => done());
+    authenticationService.tokenProcessed().subscribe(() => {
+      expect(setupSilentRefreshSpy).toHaveBeenCalledTimes(1);
+      done()
+    });
   });
 
   it('should properly handle an error during loadDiscoveryDocumentAndTryLogin', (done: DoneFn) => {
@@ -75,7 +77,7 @@ describe('AuthenticationService', () => {
     // Expect that the standard functions were called
     expect(configureSpy).toHaveBeenCalledTimes(1);
     expect(loadDiscoAndTrySpy).toHaveBeenCalledTimes(1);
-    expect(setupSilentRefreshSpy).toHaveBeenCalledTimes(1);
+    expect(setupSilentRefreshSpy).not.toHaveBeenCalled();
   });
 
   it('should properly call initImplicitFlow', () => {

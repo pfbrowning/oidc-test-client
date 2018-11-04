@@ -21,15 +21,14 @@ export class AuthenticationService {
     to tokenProcessed knows that the token has been processed.*/
     this.oauthService.loadDiscoveryDocumentAndTryLogin()
       .then(() => {
-        this._tokenProcessed.next();
         this.oauthService.setupAutomaticSilentRefresh();
+        this._tokenProcessed.next();
       })
       .catch(error => this.errorHandlingService.handleError(error,
         'Failed to load discovery document: Is your OIDC provider configured and running?'));
 
     this.oauthService.events.subscribe(event => {
       this._oAuthEvents.next(event);
-      console.log('oauth event', event);
     });
   }
 

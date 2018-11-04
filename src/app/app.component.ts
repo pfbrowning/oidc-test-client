@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LoadingIndicatorService } from '@browninglogic/ng-loading-indicator';
 import { AuthenticationService } from './services/authentication.service';
 import { ErrorHandlingService } from './services/error-handling.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent {
 
   constructor(private authenticationService: AuthenticationService,
     private loadingIndicatorService: LoadingIndicatorService,
-    private errorHandlingService: ErrorHandlingService) {}
+    private errorHandlingService: ErrorHandlingService,
+    private messageService: MessageService) {}
 
   public get userAuthenticated(): boolean {
     return this.authenticationService.authenticated;
@@ -31,12 +33,8 @@ export class AppComponent {
     // Explicitly trigger silent refresh to demonstrate the functionality.
     this.loadingIndicatorService.showLoadingIndicator('Performing Silent Refresh');
     this.authenticationService.silentRefresh()
-      .then(() => this.alert('Silent Refresh Successful'))
+      .then(() => this.messageService.add({severity:'success', summary:'Silent Refresh Successful'}))
       .catch(error => this.errorHandlingService.handleError(error, 'Silent Refresh Failed'))
       .then(() => this.loadingIndicatorService.hideLoadingIndicator());
-  }
-
-  public alert(message: string) {
-    alert(message);
   }
 }
