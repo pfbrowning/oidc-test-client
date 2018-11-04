@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "test:cover": "rm -rf ./coverage && ng test ng-loading-indicator --source-map --no-watch --code-coverage",
+    "test:cover": "rm -rf ./coverage && ng test --source-map --no-watch --code-coverage",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "private": true,
