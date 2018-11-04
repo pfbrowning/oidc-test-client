@@ -40,6 +40,24 @@ describe('OidcInfoDisplayComponent', () => {
     ngOnDestroySpy = spyOn(component, 'ngOnDestroy').and.callThrough();
   });
 
+  /* Mock up some test data to test a sequence of differing values.  It doesn't matter if this
+  data is semantically accurate: we're just testing the interval and the model / template binding,
+  rather than the data itself. */
+  const testExpirationData = [
+    {authenticated: true, idExpDate: moment('2013-02-08 09:30:26'), idExpired: false, idExpiresIn: 3,
+      accessExpDate: moment('2014-01-01 01:30:24'), accessExpired: true, accessExpiresIn: 17 },
+    {authenticated: true, idExpDate: moment('1999-03-09 04:28:31'), idExpired: true, idExpiresIn: -1983,
+      accessExpDate: moment('2022-12-12 02:01:03'), accessExpired: false, accessExpiresIn: -946 },
+    {authenticated: false, idExpDate: moment('1234-05-06 07:08:09'), idExpired: true, idExpiresIn: 2,
+      accessExpDate: moment('9876-01-01 09:08:13'), accessExpired: false, accessExpiresIn: 8 },
+    {authenticated: true, idExpDate: moment('2999-07-08 01:02:03'), idExpired: false, idExpiresIn: 1234,
+      accessExpDate: moment('1941-12-07 04:05:06'), accessExpired: true, accessExpiresIn: 5678 },
+    {authenticated: false, idExpDate: null, idExpired: null, idExpiresIn: null,
+      accessExpDate: null, accessExpired: null, accessExpiresIn: null },
+    {authenticated: true, idExpDate: moment('1914-06-28 01:01:01'), idExpired: false, idExpiresIn: 1234,
+      accessExpDate: moment('1918-11-11 23:59:59'), accessExpired: true, accessExpiresIn: 804359894 },
+  ];
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
@@ -157,22 +175,4 @@ describe('OidcInfoDisplayComponent', () => {
     TestHelpers.expectStringsToMatchIgnoringSpaceAndLineBreaks(boundAccessTokenClaims, JSON.stringify(component.accessTokenClaims));
     TestHelpers.expectStringsToMatchIgnoringSpaceAndLineBreaks(boundIdentityClaims, JSON.stringify(component.identityTokenClaims));
   });
-
-  /* Mock up some test data to test a sequence of differing values.  It doesn't matter if this
-  data is semantically accurate: we're just testing the interval and the model / template binding,
-  rather than the data itself. */
-  const testExpirationData = [
-    {authenticated: true, idExpDate: moment('2013-02-08 09:30:26'), idExpired: false, idExpiresIn: 3,
-      accessExpDate: moment('2014-01-01 01:30:24'), accessExpired: true, accessExpiresIn: 17 },
-    {authenticated: true, idExpDate: moment('1999-03-09 04:28:31'), idExpired: true, idExpiresIn: -1983,
-      accessExpDate: moment('2022-12-12 02:01:03'), accessExpired: false, accessExpiresIn: -946 },
-    {authenticated: false, idExpDate: moment('1234-05-06 07:08:09'), idExpired: true, idExpiresIn: 2,
-      accessExpDate: moment('9876-01-01 09:08:13'), accessExpired: false, accessExpiresIn: 8 },
-    {authenticated: true, idExpDate: moment('2999-07-08 01:02:03'), idExpired: false, idExpiresIn: 1234,
-      accessExpDate: moment('1941-12-07 04:05:06'), accessExpired: true, accessExpiresIn: 5678 },
-    {authenticated: false, idExpDate: null, idExpired: null, idExpiresIn: null,
-      accessExpDate: null, accessExpired: null, accessExpiresIn: null },
-    {authenticated: true, idExpDate: moment('1914-06-28 01:01:01'), idExpired: false, idExpiresIn: 1234,
-      accessExpDate: moment('1918-11-11 23:59:59'), accessExpired: true, accessExpiresIn: 804359894 },
-  ];
 });

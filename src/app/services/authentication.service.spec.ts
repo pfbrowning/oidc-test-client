@@ -43,6 +43,14 @@ describe('AuthenticationService', () => {
     getIdTokenExpirationSpy = spyOn(oauthService, 'getIdTokenExpiration');
   });
 
+  const testExpirationData = [
+    { expMil: 1541121712, currentDate: moment(1541121712), expectExpMoment: moment(1541121712), expectExpired: false, expectExpiresIn: 0 },
+    { expMil: 1541121712, currentDate: moment(1541121713), expectExpMoment: moment(1541121712), expectExpired: true, expectExpiresIn: 0 },
+    { expMil: 1541121712, currentDate: moment(1541121711), expectExpMoment: moment(1541121712), expectExpired: false, expectExpiresIn: 0 },
+    { expMil: 1541121712, currentDate: moment(1541120712), expectExpMoment: moment(1541121712), expectExpired: false, expectExpiresIn: 1 },
+    { expMil: 1541121712, currentDate: moment(1541122712), expectExpMoment: moment(1541121712), expectExpired: true, expectExpiresIn: -1 },
+  ];
+
   it('should properly construct', (done: DoneFn) => {
     // Initialize the service
     authenticationService = new AuthenticationService(oauthService, errorHandlingServiceSpy);
@@ -319,12 +327,4 @@ describe('AuthenticationService', () => {
     expect(oAuthEventCatcher.error).not.toHaveBeenCalled();
     expect(oAuthEventCatcher.complete).not.toHaveBeenCalled();
   });
-
-  const testExpirationData = [
-    { expMil: 1541121712, currentDate: moment(1541121712), expectExpMoment: moment(1541121712), expectExpired: false, expectExpiresIn: 0 },
-    { expMil: 1541121712, currentDate: moment(1541121713), expectExpMoment: moment(1541121712), expectExpired: true, expectExpiresIn: 0 },
-    { expMil: 1541121712, currentDate: moment(1541121711), expectExpMoment: moment(1541121712), expectExpired: false, expectExpiresIn: 0 },
-    { expMil: 1541121712, currentDate: moment(1541120712), expectExpMoment: moment(1541121712), expectExpired: false, expectExpiresIn: 1 },
-    { expMil: 1541121712, currentDate: moment(1541122712), expectExpMoment: moment(1541121712), expectExpired: true, expectExpiresIn: -1 },
-  ];
 });

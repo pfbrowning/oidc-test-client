@@ -5,7 +5,7 @@ import { OAuthEvent } from 'angular-oauth2-oidc';
 import { MessageService } from 'primeng/components/common/messageservice';
 
 @Component({
-  selector: 'toaster',
+  selector: 'toaster-manager',
   templateUrl: './toaster.component.html',
   styleUrls: ['./toaster.component.css']
 })
