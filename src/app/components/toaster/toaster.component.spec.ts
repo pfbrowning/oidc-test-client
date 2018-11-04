@@ -30,7 +30,7 @@ describe('ToasterComponent', () => {
     component = fixture.componentInstance;
     authenticationService = TestBed.get(AuthenticationService);
     messageService = TestBed.get(MessageService);
-    messageServiceAddSpy = spyOn(messageService, "add");
+    messageServiceAddSpy = spyOn(messageService, 'add');
   });
 
   it('should create and destroy', () => {
@@ -49,12 +49,12 @@ describe('ToasterComponent', () => {
     // Trigger an OAuth event and ensure that message add is called accordingly
     authenticationService.emitOAuthEvent(new OAuthInfoEvent('discovery_document_loaded'));
     expect(messageServiceAddSpy).toHaveBeenCalledTimes(1);
-    expect(messageServiceAddSpy.calls.mostRecent().args).toEqual([{severity:'info', summary:'discovery_document_loaded'}]);
+    expect(messageServiceAddSpy.calls.mostRecent().args).toEqual([{severity: 'info', summary: 'discovery_document_loaded'}]);
 
     // Trigger a second event to ensure that it continues to happen properly
     authenticationService.emitOAuthEvent(new OAuthInfoEvent('user_profile_loaded'));
     expect(messageServiceAddSpy).toHaveBeenCalledTimes(2);
-    expect(messageServiceAddSpy.calls.mostRecent().args).toEqual([{severity:'info', summary:'user_profile_loaded'}]);
+    expect(messageServiceAddSpy.calls.mostRecent().args).toEqual([{severity: 'info', summary: 'user_profile_loaded'}]);
 
     fixture.destroy();
   });
@@ -67,7 +67,7 @@ describe('ToasterComponent', () => {
     // Initialize the component and check to ensure that the oauth event was passed to message add accordingly
     fixture.detectChanges();
     expect(messageServiceAddSpy).toHaveBeenCalledTimes(1);
-    expect(messageServiceAddSpy.calls.mostRecent().args).toEqual([{severity:'info', summary:'discovery_document_loaded'}]);
+    expect(messageServiceAddSpy.calls.mostRecent().args).toEqual([{severity: 'info', summary: 'discovery_document_loaded'}]);
 
     fixture.destroy();
   });

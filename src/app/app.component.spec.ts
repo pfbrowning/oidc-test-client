@@ -60,10 +60,10 @@ describe('AppComponent', () => {
     messageService = TestBed.get(MessageService);
     showLoadingIndicatorSpy = spyOn(loadingIndicatorService, 'showLoadingIndicator');
     hideLoadingIndicatorSpy = spyOn(loadingIndicatorService, 'hideLoadingIndicator');
-    silentRefreshSpy = spyOn(authenticationService, "silentRefresh").and.callThrough();
+    silentRefreshSpy = spyOn(authenticationService, 'silentRefresh').and.callThrough();
     initImplicitFlowSpy = spyOn(authenticationService, 'initImplicitFlow').and.callThrough();
     logOutSpy = spyOn(authenticationService, 'logOut').and.callThrough();
-    messageServiceAddSpy = spyOn(messageService, "add");
+    messageServiceAddSpy = spyOn(messageService, 'add');
     handleErrorSpy = spyOn(errorHandlingService, 'handleError');
     fixture.detectChanges();
   });

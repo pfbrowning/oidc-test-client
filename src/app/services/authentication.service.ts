@@ -38,7 +38,7 @@ export class AuthenticationService {
   public tokenProcessed(): Observable<void> {
     return this._tokenProcessed;
   }
-  
+
   public get oAuthEvents(): Observable<OAuthEvent> {
     return this._oAuthEvents;
   }

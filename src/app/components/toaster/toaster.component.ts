@@ -19,10 +19,10 @@ export class ToasterComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if(this.oAuthEventsSub) this.oAuthEventsSub.unsubscribe();
+    if (this.oAuthEventsSub) { this.oAuthEventsSub.unsubscribe(); }
   }
 
   private onOauthEvent(event: OAuthEvent) {
-    this.messageService.add({severity:'info', summary:event.type});
+    this.messageService.add({severity: 'info', summary: event.type});
   }
 }

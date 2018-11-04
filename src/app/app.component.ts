@@ -33,7 +33,7 @@ export class AppComponent {
     // Explicitly trigger silent refresh to demonstrate the functionality.
     this.loadingIndicatorService.showLoadingIndicator('Performing Silent Refresh');
     this.authenticationService.silentRefresh()
-      .then(() => this.messageService.add({severity:'success', summary:'Silent Refresh Successful'}))
+      .then(() => this.messageService.add({severity: 'success', summary: 'Silent Refresh Successful'}))
       .catch(error => this.errorHandlingService.handleError(error, 'Silent Refresh Failed'))
       .then(() => this.loadingIndicatorService.hideLoadingIndicator());
   }

@@ -56,7 +56,7 @@ describe('AuthenticationService', () => {
     // Expect that the tokenProcessed observable emits before completing the test
     authenticationService.tokenProcessed().subscribe(() => {
       expect(setupSilentRefreshSpy).toHaveBeenCalledTimes(1);
-      done()
+      done();
     });
   });
 
@@ -284,12 +284,12 @@ describe('AuthenticationService', () => {
     // Emit one OAuth event and epect that it was passed through AuthenticationService
     oauthService.emitOAuthEvent(new OAuthInfoEvent('discovery_document_loaded'));
     expect(oAuthEventCatcher.emit).toHaveBeenCalledTimes(1);
-    expect(oAuthEventCatcher.emit.calls.mostRecent().args).toEqual([new OAuthInfoEvent('discovery_document_loaded')])
+    expect(oAuthEventCatcher.emit.calls.mostRecent().args).toEqual([new OAuthInfoEvent('discovery_document_loaded')]);
 
     // Emit a second oauth event and ensure that it was handled properly as well
     oauthService.emitOAuthEvent(new OAuthInfoEvent('user_profile_loaded'));
     expect(oAuthEventCatcher.emit).toHaveBeenCalledTimes(2);
-    expect(oAuthEventCatcher.emit.calls.mostRecent().args).toEqual([new OAuthInfoEvent('user_profile_loaded')])
+    expect(oAuthEventCatcher.emit.calls.mostRecent().args).toEqual([new OAuthInfoEvent('user_profile_loaded')]);
 
     // Unsubscribe and clean up
     oauthEventsSubscription.unsubscribe();
@@ -297,13 +297,13 @@ describe('AuthenticationService', () => {
     expect(oAuthEventCatcher.emit).toHaveBeenCalledTimes(2);
     expect(oAuthEventCatcher.error).not.toHaveBeenCalled();
     expect(oAuthEventCatcher.complete).not.toHaveBeenCalled();
-  })
+  });
 
   it('should replay up to 10 previous oauth events on initial subscription', () => {
     authenticationService = new AuthenticationService(oauthService, errorHandlingServiceSpy);
 
     // Emit 15 oauth events before subscription
-    for(let i = 0; i < 15; i++) {
+    for (let i = 0; i < 15; i++) {
       oauthService.emitOAuthEvent(new OAuthInfoEvent('user_profile_loaded'));
     }
     oauthEventsSubscription = authenticationService.oAuthEvents.subscribe(
@@ -318,7 +318,7 @@ describe('AuthenticationService', () => {
     expect(oauthEventsSubscription.closed).toBe(true);
     expect(oAuthEventCatcher.error).not.toHaveBeenCalled();
     expect(oAuthEventCatcher.complete).not.toHaveBeenCalled();
-  })
+  });
 
   const testExpirationData = [
     { expMil: 1541121712, currentDate: moment(1541121712), expectExpMoment: moment(1541121712), expectExpired: false, expectExpiresIn: 0 },

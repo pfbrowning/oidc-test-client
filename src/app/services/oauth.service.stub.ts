@@ -34,7 +34,7 @@ export class OAuthServiceStub {
     public get events(): Observable<OAuthEvent> {
         return this._oAuthEvents;
     }
-    public emitOAuthEvent(event: OAuthEvent) : void {
+    public emitOAuthEvent(event: OAuthEvent): void {
         this._oAuthEvents.next(event);
     }
 }

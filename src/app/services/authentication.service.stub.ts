@@ -14,7 +14,7 @@ export class AuthenticationServiceStub {
     public idTokenClaims: Object = null;
     public accessTokenClaims: Object = null;
     public silentRefresh(): Promise<OAuthEvent> {
-        return Promise.resolve(new OAuthInfoEvent("user_profile_loaded"));
+        return Promise.resolve(new OAuthInfoEvent('user_profile_loaded'));
     }
     public initImplicitFlow(): void {}
     public logOut(): void {}
