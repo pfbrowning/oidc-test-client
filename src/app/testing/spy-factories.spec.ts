@@ -4,12 +4,11 @@ import { Moment } from 'moment';
 
 export class SpyFactories {
     public static CreateAuthenticationServiceSpy(): any {
-        let oAuthEventsSubject = new ReplaySubject<OAuthEvent>(1);
-        let idTokenExpiration: Moment;
+        const oAuthEventsSubject = new ReplaySubject<OAuthEvent>(1);
         const spy = jasmine.createSpyObj('authenticationService', [
-            'silentRefresh', 
-            'initImplicitFlow', 
-            'logOut', 
+            'silentRefresh',
+            'initImplicitFlow',
+            'logOut',
             'tokenProcessed',
             'emitOAuthEvent'
             ]);

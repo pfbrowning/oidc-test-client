@@ -15,7 +15,7 @@ describe('ToasterComponent', () => {
   let authenticationServiceSpy: any;
 
   beforeEach(async(() => {
-    authenticationServiceSpy = SpyFactories.CreateAuthenticationServiceSpy()
+    authenticationServiceSpy = SpyFactories.CreateAuthenticationServiceSpy();
 
     TestBed.configureTestingModule({
       imports: [ ToastModule ],
